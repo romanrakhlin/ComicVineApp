@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  ComicsVineApp
+//
+//  Created by Roman Rakhlin on 3/30/22.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_KEY = "61209f1700a5b27cea03e49cb4118b1dc1e17837"
