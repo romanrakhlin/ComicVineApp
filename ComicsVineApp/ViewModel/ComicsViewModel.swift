@@ -5,59 +5,26 @@
 //  Created by Roman Rakhlin on 3/30/22.
 //
 
-import UIKit
+import Foundation
 
-struct ComicsViewModel {
+class ComicsViewModel {
+    
+    let networkManager = NetworkManager()
+    
+    // cause of a weird response from Info.plist, we replacing "\\" with ""
+    let apiKey: String = (Bundle.main.infoDictionary!["API_KEY"] as! String).replacingOccurrences(of: "\"", with: "")
 
-    let baseUrl = "https://comicvine.gamespot.com/api/"
-//    let apiKey: String = Bundle.main.infoDictionary!["API_KEY"] as! String
-    let apiKey: String = "61209f1700a5b27cea03e49cb4118b1dc1e17837"
-
-    func fetchCharacters(completion: @escaping ([Result]) -> (), page: Int) {
-        guard let url = URL(string: baseUrl + "characters/?api_key=" + apiKey + "&format=json&offset=\(page)") else {
-            print("problem with URL")
-            return
+    func fetchCharacters(completion: @escaping ([Character]?) -> (), offset: Int, limit: Int) {
+        networkManager.performNetworkTask(endpoint: APIData.withPage(apiKey: apiKey, offset: offset, limit: limit), type: Result.self) { response in
+            completion(response.results)
         }
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if error == nil && data != nil {
-                do {
-                    let result = try JSONDecoder().decode(Character.self, from: data!)
-                    completion(result.results)
-                } catch {
-                    print("Error decoding JSON")
-                    return
-                }
-            } else {
-                print(error!.localizedDescription)
-                return
-            }
-        }
-
-        task.resume()
+        completion(nil)
     }
-
-    func downloadImage(completion: @escaping (UIImage?) -> (), url: String) {
-        guard let url = URL(string: url) else {
-            print("problem with URL")
-            return
+    
+    func searchCharacters(completion: @escaping ([Character]?) -> (), keywords: String, offset: Int, limit: Int) {
+        networkManager.performNetworkTask(endpoint: APIData.withSearch(apiKey: apiKey, keyword: keywords, offset: offset, limit: limit), type: Result.self) { response in
+            completion(response.results)
         }
-
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error!.localizedDescription)
-                completion(nil)
-                return
-            }
-
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-
-            DispatchQueue.main.async() {
-                completion(UIImage(data: data)!)
-            }
-        }
-
-        task.resume()
+        completion(nil)
     }
 }

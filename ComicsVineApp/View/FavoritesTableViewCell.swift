@@ -1,14 +1,15 @@
 //
-//  ComicsTableViewCell.swift
+//  FavoritesTableViewCell.swift
 //  ComicsVineApp
 //
-//  Created by Roman Rakhlin on 3/31/22.
+//  Created by Roman Rakhlin on 4/4/22.
 //
 
 import UIKit
 
-class ComicsTableViewCell: UITableViewCell {
+class FavoritesTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var outterView: UIView!
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
    
