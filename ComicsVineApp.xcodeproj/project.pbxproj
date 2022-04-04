@@ -13,7 +13,6 @@
 		827ED93B27FA666A00241650 /* FavoriteCharacters.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 827ED93927FA666A00241650 /* FavoriteCharacters.xcdatamodeld */; };
 		82AA1D5327F7927800FC9229 /* CharactersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA1D5227F7927800FC9229 /* CharactersCollectionViewController.swift */; };
 		82AA1D5527F792B400FC9229 /* CharacterDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA1D5427F792B400FC9229 /* CharacterDetailTableViewController.swift */; };
-		82AA1D5D27F793E800FC9229 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 82AA1D5C27F793E800FC9229 /* SwiftyJSON */; };
 		82AA1D7F27F9990D00FC9229 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA1D7E27F9990D00FC9229 /* NetworkManager.swift */; };
 		82AA1D8127F99DC600FC9229 /* APIData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA1D8027F99DC600FC9229 /* APIData.swift */; };
 		82AA1D8527F9A3E600FC9229 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA1D8427F9A3E600FC9229 /* ImageDownloader.swift */; };
@@ -57,7 +56,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82AA1D5D27F793E800FC9229 /* SwiftyJSON in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +170,6 @@
 			);
 			name = ComicsVineApp;
 			packageProductDependencies = (
-				82AA1D5C27F793E800FC9229 /* SwiftyJSON */,
 			);
 			productName = ComicsVineApp;
 			productReference = 82F6E3F727F4C92B004B4E15 /* ComicsVineApp.app */;
@@ -203,7 +200,6 @@
 			);
 			mainGroup = 82F6E3EE27F4C92B004B4E15;
 			packageReferences = (
-				82AA1D5B27F793E800FC9229 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 82F6E3F827F4C92B004B4E15 /* Products */;
 			projectDirPath = "";
@@ -466,25 +462,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		82AA1D5B27F793E800FC9229 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		82AA1D5C27F793E800FC9229 /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 82AA1D5B27F793E800FC9229 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
-		};
-/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		827ED93927FA666A00241650 /* FavoriteCharacters.xcdatamodeld */ = {

@@ -21,7 +21,7 @@ class CharactersCollectionViewController: UIViewController {
     var currentLimit = 20
     var characters = [Character]()
     
-   // MARK: - View Life Cycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,11 +34,13 @@ class CharactersCollectionViewController: UIViewController {
         setUpUI()
     }
     
-    // MARK: - Custom Action
+    // MARK: - Helper Functions
     private func setUpUI() {
+        // set up collection view
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        // style collection view
         let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 10
@@ -54,8 +56,10 @@ class CharactersCollectionViewController: UIViewController {
         collectionFooterView?.activityIndicaorView.isHidden = true
     }
     
+    // get first chunk of characters and set up collection view
     private func fetchCharacters() {
         showLoader()
+        
         comicsViewModel.fetchCharacters(completion: { characters in
             if let characters = characters {
                 DispatchQueue.main.async {
@@ -67,9 +71,11 @@ class CharactersCollectionViewController: UIViewController {
         }, offset: currentOffset, limit: currentLimit)
     }
     
+    // pagination, preparing next page
     private func getNextPage() {
         currentOffset = characters.count
         showLoader()
+        
         comicsViewModel.fetchCharacters(completion: { characters in
             if let characters = characters {
                 DispatchQueue.main.async {
@@ -81,9 +87,11 @@ class CharactersCollectionViewController: UIViewController {
         }, offset: currentOffset, limit: currentLimit)
     }
     
+    // for seatching the characters
     private func searchCharacters(with keywords: String) {
         currentOffset = characters.count
         showLoader()
+        
         comicsViewModel.searchCharacters(completion: { characters in
             if let characters = characters {
                 DispatchQueue.main.async {
@@ -95,19 +103,23 @@ class CharactersCollectionViewController: UIViewController {
         }, keywords: keywords, offset: currentOffset, limit: currentLimit)
     }
     
+    // for showing the loader
     private func showLoader() {
         isLoading = false
+        
         collectionFooterView?.activityIndicaorView.isHidden = false
         collectionFooterView?.activityIndicaorView.startAnimating()
     }
     
+    // for hiding the loader
     private func hideLoader() {
         isLoading = true
+        
         collectionFooterView?.activityIndicaorView.isHidden = true
         collectionFooterView?.activityIndicaorView.stopAnimating()
     }
     
-    // Pull to refresh action
+    // pull to refresh action
     @objc private func refreshList(_ refreshControl: UIRefreshControl) {
         collectionView.reloadData()
         currentOffset = 0
@@ -115,6 +127,7 @@ class CharactersCollectionViewController: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    // for desplaying a custom alert
     private func showAlert(with title: String, and message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -123,10 +136,13 @@ class CharactersCollectionViewController: UIViewController {
 }
 
 // MARK: - Delegate
-extension CharactersCollectionViewController : UICollectionViewDelegate{
+extension CharactersCollectionViewController: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "charactersDetail") as! CharacterDetailTableViewController
+        
         detailVC.character = self.characters[indexPath.row]
+        
         self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
@@ -135,6 +151,7 @@ extension CharactersCollectionViewController : UICollectionViewDelegate{
         let contentLarger = (scrollView.contentSize.height > scrollView.frame.size.height)
         let viewableHeight = contentLarger ? scrollView.frame.size.height : scrollView.contentSize.height
         let atBottom = (scrollView.contentOffset.y >= scrollView.contentSize.height - viewableHeight + 50)
+        
         if atBottom && isLoading {
             getNextPage()
         }
@@ -142,7 +159,8 @@ extension CharactersCollectionViewController : UICollectionViewDelegate{
 }
 
 // MARK: - Data Source
-extension CharactersCollectionViewController : UICollectionViewDataSource {
+extension CharactersCollectionViewController: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return characters.count
     }
