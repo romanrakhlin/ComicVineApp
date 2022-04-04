@@ -36,6 +36,7 @@ class CharactersCollectionViewController: UIViewController {
     
     // MARK: - Helper Functions
     private func setUpUI() {
+        
         // set up collection view
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -58,49 +59,64 @@ class CharactersCollectionViewController: UIViewController {
     
     // get first chunk of characters and set up collection view
     private func fetchCharacters() {
-        showLoader()
-        
-        comicsViewModel.fetchCharacters(completion: { characters in
-            if let characters = characters {
-                DispatchQueue.main.async {
-                    self.characters = characters
-                    self.collectionView.reloadData()
-                    self.hideLoader()
+        let internetConnection = comicsViewModel.checkInternerConnection()
+        if internetConnection {
+            showLoader()
+            
+            comicsViewModel.fetchCharacters(completion: { characters in
+                if let characters = characters {
+                    DispatchQueue.main.async {
+                        self.characters = characters
+                        self.collectionView.reloadData()
+                        self.hideLoader()
+                    }
                 }
-            }
-        }, offset: currentOffset, limit: currentLimit)
+            }, offset: currentOffset, limit: currentLimit)
+        } else {
+            showAlert(with: "Error", and: "You have no Internet Connection")
+        }
     }
     
     // pagination, preparing next page
     private func getNextPage() {
-        currentOffset = characters.count
-        showLoader()
-        
-        comicsViewModel.fetchCharacters(completion: { characters in
-            if let characters = characters {
-                DispatchQueue.main.async {
-                    self.characters += characters
-                    self.collectionView.reloadData()
-                    self.hideLoader()
+        let internetConnection = comicsViewModel.checkInternerConnection()
+        if internetConnection {
+            currentOffset = characters.count
+            showLoader()
+            
+            comicsViewModel.fetchCharacters(completion: { characters in
+                if let characters = characters {
+                    DispatchQueue.main.async {
+                        self.characters += characters
+                        self.collectionView.reloadData()
+                        self.hideLoader()
+                    }
                 }
-            }
-        }, offset: currentOffset, limit: currentLimit)
+            }, offset: currentOffset, limit: currentLimit)
+        } else {
+            showAlert(with: "Error", and: "You have no Internet Connection")
+        }
     }
     
     // for seatching the characters
     private func searchCharacters(with keywords: String) {
-        currentOffset = characters.count
-        showLoader()
-        
-        comicsViewModel.searchCharacters(completion: { characters in
-            if let characters = characters {
-                DispatchQueue.main.async {
-                    self.characters = characters
-                    self.collectionView.reloadData()
-                    self.hideLoader()
+        let internetConnection = comicsViewModel.checkInternerConnection()
+        if internetConnection {
+            currentOffset = characters.count
+            showLoader()
+            
+            comicsViewModel.searchCharacters(completion: { characters in
+                if let characters = characters {
+                    DispatchQueue.main.async {
+                        self.characters = characters
+                        self.collectionView.reloadData()
+                        self.hideLoader()
+                    }
                 }
-            }
-        }, keywords: keywords, offset: currentOffset, limit: currentLimit)
+            }, keywords: keywords, offset: currentOffset, limit: currentLimit)
+        } else {
+            showAlert(with: "Error", and: "You have no Internet Connection")
+        }
     }
     
     // for showing the loader
@@ -212,7 +228,7 @@ extension CharactersCollectionViewController: UISearchBarDelegate {
                 currentOffset = 0
                 fetchCharacters()
             } else {
-                self.showAlert(with: "An Error Occuted", and: "The name is too short!")
+                self.showAlert(with: "An Error Occured", and: "The name is too short!")
             }
         }
     }

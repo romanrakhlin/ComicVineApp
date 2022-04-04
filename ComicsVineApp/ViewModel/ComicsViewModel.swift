@@ -27,4 +27,8 @@ class ComicsViewModel {
         }
         completion(nil)
     }
+    
+    func checkInternerConnection() -> Bool {
+        return networkManager.isConnectedToNetwork()
+    }
 }
