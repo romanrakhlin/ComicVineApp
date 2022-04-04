@@ -14,10 +14,6 @@ class CharactersCollectionViewController: UIViewController {
     // ViewModel
     let comicsViewModel = ComicsViewModel()
     
-    // CollectionView Attribute
-    let leftAndRightPadding:CGFloat = 5.0
-    var numberOfItemsPerRow:CGFloat = 2.0
-    
     // Pagination Properties
     var collectionFooterView: LoadingFooterView?
     var isLoading: Bool = false
@@ -25,7 +21,7 @@ class CharactersCollectionViewController: UIViewController {
     var currentLimit = 20
     var characters = [Character]()
     
-   //MARK: - View Life Cycle
+   // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,15 +34,12 @@ class CharactersCollectionViewController: UIViewController {
         setUpUI()
     }
     
-    //MARK: - Custom Action
+    // MARK: - Custom Action
     private func setUpUI() {
         collectionView.dataSource = self
         collectionView.delegate = self
         
         let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-//        layout.scrollDirection = UICollectionView.ScrollDirection.vertical
-//        layout.minimumInteritemSpacing = 10.0
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.minimumInteritemSpacing = 10
         layout.itemSize = CGSize(width:(self.collectionView.frame.size.width - 10)/2 ,height: (self.collectionView.frame.size.height)/3.5)

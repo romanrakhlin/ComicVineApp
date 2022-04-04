@@ -6,22 +6,29 @@
 //
 
 import UIKit
+import CoreData
 
 class CharacterDetailTableViewController: UITableViewController {
     
     var character: Character!
     
+    @IBOutlet weak var favoritesButton: UIBarButtonItem!
     @IBOutlet weak var outerView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var deckTextView: UITextView!
+    
+    private var addedToFavorites = false
+    
+    // for core data
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setValues()
         styleComponents()
-        addNavigationButton()
+        fetchFavoritesAndCheck()
     }
     
     private func setValues() {
@@ -33,6 +40,9 @@ class CharacterDetailTableViewController: UITableViewController {
         // setting other details
         nameLabel.text = character.name
         deckTextView.text = character.deck
+        
+        // set image of navigaton button
+        favoritesButton.image = UIImage(systemName: "star")
     }
     
     //MARK: - Apply shadows on views
@@ -47,16 +57,55 @@ class CharacterDetailTableViewController: UITableViewController {
         iconImageView.clipsToBounds = true
     }
     
-    private func addNavigationButton() {
-        let saveToFavoritesButton = UIButton(type: .custom)
-        saveToFavoritesButton.setImage(UIImage(systemName: "star"), for: .normal)
-        saveToFavoritesButton.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        saveToFavoritesButton.addTarget(self, action: #selector(self.saveToFavorites(_:)), for: .touchUpInside)
-        let saveToFavoritesbuttonItem = UIBarButtonItem(customView: saveToFavoritesButton)
-        self.navigationItem.rightBarButtonItem = saveToFavoritesbuttonItem
+    // Fetch all and check if already saved
+    private func fetchFavoritesAndCheck() {
+        let gottenCharacters = try! context.fetch(FavoriteCharacter.fetchRequest())
+        
+        for character in gottenCharacters {
+            if character.name == self.character.name {
+                favoritesButton.image = UIImage(systemName: "star.fill")
+                addedToFavorites = true
+                return
+            }
+        }
+        
+        favoritesButton.image = UIImage(systemName: "star")
     }
     
-    @objc private func saveToFavorites(_ refreshControl: UIRefreshControl) {
-        print("Saved!!!!!")
+    @IBAction func addToFavoritesButton(_ sender: Any) {
+        if !addedToFavorites {
+            // add
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let favoriteCharacter = FavoriteCharacter(context: context)
+            
+            favoriteCharacter.icon = iconImageView.image!.jpegData(compressionQuality: 1.0)
+            favoriteCharacter.name = character.name
+            favoriteCharacter.deck = character.deck
+            
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            
+            favoritesButton.image = UIImage(systemName: "star.fill")
+            addedToFavorites = true
+            
+            print("Saved")
+        } else {
+            // remove
+            let gottenCharacters = try! context.fetch(FavoriteCharacter.fetchRequest())
+            
+            for index in 0...gottenCharacters.count {
+                if gottenCharacters[index].name == self.character.name {
+                    let currentCharacter = gottenCharacters[index]
+                    self.context.delete(currentCharacter)
+                    (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                    
+                    favoritesButton.image = UIImage(systemName: "star")
+                    addedToFavorites = false
+                    
+                    print("Removed")
+                    
+                    return
+                }
+            }
+        }
     }
 }

@@ -10,6 +10,7 @@
 		821B3D1327FA40E500D886EC /* SearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 821B3D1227FA40E500D886EC /* SearchHeaderView.swift */; };
 		827ED93627FA614100241650 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827ED93527FA614100241650 /* FavoritesViewController.swift */; };
 		827ED93827FA62AF00241650 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827ED93727FA62AF00241650 /* FavoritesTableViewCell.swift */; };
+		827ED93B27FA666A00241650 /* FavoriteCharacters.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 827ED93927FA666A00241650 /* FavoriteCharacters.xcdatamodeld */; };
 		82AA1D5327F7927800FC9229 /* CharactersCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA1D5227F7927800FC9229 /* CharactersCollectionViewController.swift */; };
 		82AA1D5527F792B400FC9229 /* CharacterDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA1D5427F792B400FC9229 /* CharacterDetailTableViewController.swift */; };
 		82AA1D5D27F793E800FC9229 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 82AA1D5C27F793E800FC9229 /* SwiftyJSON */; };
@@ -31,6 +32,7 @@
 		821B3D1227FA40E500D886EC /* SearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHeaderView.swift; sourceTree = "<group>"; };
 		827ED93527FA614100241650 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		827ED93727FA62AF00241650 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
+		827ED93A27FA666A00241650 /* FavoriteCharacters.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FavoriteCharacters.xcdatamodel; sourceTree = "<group>"; };
 		82AA1D5227F7927800FC9229 /* CharactersCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersCollectionViewController.swift; sourceTree = "<group>"; };
 		82AA1D5427F792B400FC9229 /* CharacterDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailTableViewController.swift; sourceTree = "<group>"; };
 		82AA1D7E27F9990D00FC9229 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				82AA1D7D27F9989800FC9229 /* Networking */,
 				82F6E40327F4C92C004B4E15 /* Assets.xcassets */,
 				82F6E41227F4CA7D004B4E15 /* Config.xcconfig */,
+				827ED93927FA666A00241650 /* FavoriteCharacters.xcdatamodeld */,
 			);
 			path = ComicsVineApp;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 				82AA1D7F27F9990D00FC9229 /* NetworkManager.swift in Sources */,
 				82AA1D5527F792B400FC9229 /* CharacterDetailTableViewController.swift in Sources */,
 				821B3D1327FA40E500D886EC /* SearchHeaderView.swift in Sources */,
+				827ED93B27FA666A00241650 /* FavoriteCharacters.xcdatamodeld in Sources */,
 				82AA1D9727F9C86A00FC9229 /* LoadingFooterView.swift in Sources */,
 				82F6E3FD27F4C92B004B4E15 /* SceneDelegate.swift in Sources */,
 				82AA1D8127F99DC600FC9229 /* APIData.swift in Sources */,
@@ -481,6 +485,19 @@
 			productName = SwiftyJSON;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		827ED93927FA666A00241650 /* FavoriteCharacters.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				827ED93A27FA666A00241650 /* FavoriteCharacters.xcdatamodel */,
+			);
+			currentVersion = 827ED93A27FA666A00241650 /* FavoriteCharacters.xcdatamodel */;
+			path = FavoriteCharacters.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 82F6E3EF27F4C92B004B4E15 /* Project object */;
 }
