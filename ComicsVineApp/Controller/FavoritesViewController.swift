@@ -10,14 +10,15 @@ import CoreData
 
 class FavoritesViewController: UIViewController {
     
+    @IBOutlet weak var tableView: UITableView!
+    
     let comicsViewModel = ComicsViewModel()
     var favoriteCharacters = [FavoriteCharacter]()
-    
-    @IBOutlet weak var tableView: UITableView!
     
     // for core data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +27,7 @@ class FavoritesViewController: UIViewController {
         fetchFavoriteCharacters()
     }
     
+    // MARK: - Helper Functions
     private func fetchFavoriteCharacters() {
         do {
             favoriteCharacters = try context.fetch(FavoriteCharacter.fetchRequest())
@@ -40,7 +42,9 @@ class FavoritesViewController: UIViewController {
     }
 }
 
+// MARK: - Data Source
 extension FavoritesViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         favoriteCharacters.count
     }
@@ -63,21 +67,4 @@ extension FavoritesViewController: UITableViewDataSource {
         self.favoriteCharacters.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
-}
-
-extension FavoritesViewController: UITableViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let detailVC = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "charactersDetail") as! CharacterDetailTableViewController
-//
-//        let currentCharacter = favoriteCharacters[indexPath.row]
-//
-//        // make character
-//        let choosenCharacter = Character.init(from: <#T##Decoder#>)
-//        choosenCharacter.name = currentCharacter.name!
-//        choosenCharacter.image.screenURL = UIImage(data: currentCharacter.icon!)
-//        choosenCharacter.deck = currentCharacter.deck
-//
-//        detailVC.character = self.characters[indexPath.row]
-//        self.navigationController?.pushViewController(detailVC, animated: true)
-//    }
 }

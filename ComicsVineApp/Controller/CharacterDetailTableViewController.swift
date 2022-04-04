@@ -10,19 +10,19 @@ import CoreData
 
 class CharacterDetailTableViewController: UITableViewController {
     
-    var character: Character!
-    
     @IBOutlet weak var favoritesButton: UIBarButtonItem!
     @IBOutlet weak var outerView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var deckTextView: UITextView!
     
+    var character: Character!
     private var addedToFavorites = false
     
     // for core data
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,6 +31,7 @@ class CharacterDetailTableViewController: UITableViewController {
         fetchFavoritesAndCheck()
     }
     
+    // MARK: - Helper Functions
     private func setValues() {
         // setting icon
         ImageDownloader.shared.downloadImage(with: character.image.screenURL, completionHandler: { (image, cached) in
@@ -45,7 +46,6 @@ class CharacterDetailTableViewController: UITableViewController {
         favoritesButton.image = UIImage(systemName: "star")
     }
     
-    //MARK: - Apply shadows on views
     private func styleComponents() {
         outerView.layer.cornerRadius = 12.0
         outerView.layer.shadowColor = UIColor.darkGray.cgColor
@@ -57,7 +57,7 @@ class CharacterDetailTableViewController: UITableViewController {
         iconImageView.clipsToBounds = true
     }
     
-    // Fetch all and check if already saved
+    // Fetch all and check if already added to Favorites
     private func fetchFavoritesAndCheck() {
         let gottenCharacters = try! context.fetch(FavoriteCharacter.fetchRequest())
         

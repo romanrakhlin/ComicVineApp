@@ -16,6 +16,10 @@ class FavoritesTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
        
+        styleUI()
+    }
+
+    private func styleUI() {
         imageContainter.layer.cornerRadius = 12.0
         imageContainter.layer.shadowColor = UIColor.darkGray.cgColor
         imageContainter.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
@@ -25,11 +29,4 @@ class FavoritesTableViewCell: UITableViewCell {
         iconImageView.layer.cornerRadius = 12.0
         iconImageView.clipsToBounds = true
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

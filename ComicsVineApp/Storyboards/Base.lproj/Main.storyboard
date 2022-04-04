@@ -8,11 +8,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Character Detail Table View Controller-->
+        <!--Description-->
         <scene sceneID="yLz-yc-JxR">
             <objects>
                 <tableViewController storyboardIdentifier="charactersDetail" id="use-er-UT9" customClass="CharacterDetailTableViewController" customModule="ComicsVineApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="K5t-ye-397">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" id="K5t-ye-397">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -20,7 +20,7 @@
                             <tableViewSection id="cnk-2N-pFq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="400" id="xKk-id-Am2">
-                                        <rect key="frame" x="0.0" y="18" width="414" height="400"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xKk-id-Am2" id="LPZ-jG-CoX">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
@@ -52,7 +52,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="600" id="7cg-pd-rJp">
-                                        <rect key="frame" x="0.0" y="418" width="414" height="600"/>
+                                        <rect key="frame" x="0.0" y="444.5" width="414" height="600"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7cg-pd-rJp" id="uVl-oE-Ooa">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
@@ -92,7 +92,7 @@
                             <outlet property="delegate" destination="use-er-UT9" id="kSB-Ja-vdt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ENC-uE-rcb">
+                    <navigationItem key="navigationItem" title="Description" id="ENC-uE-rcb">
                         <barButtonItem key="rightBarButtonItem" image="star" catalog="system" id="nUq-6M-Lfg">
                             <connections>
                                 <action selector="addToFavoritesButton:" destination="use-er-UT9" id="bXK-Bm-BkS"/>
@@ -283,7 +283,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="406" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <searchBar contentMode="redraw" placeholder="Search character" translatesAutoresizingMaskIntoConstraints="NO" id="bW7-AF-zRD">
+                                        <searchBar contentMode="redraw" placeholder="Enter a character's name" translatesAutoresizingMaskIntoConstraints="NO" id="bW7-AF-zRD">
                                             <rect key="frame" x="0.0" y="0.0" width="406" height="50"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                             <connections>
@@ -323,7 +323,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hUS-xv-Dfw"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="JXh-PI-8SB" firstAttribute="top" secondItem="hUS-xv-Dfw" secondAttribute="top" constant="4" id="5DZ-yx-sDO"/>
                             <constraint firstItem="JXh-PI-8SB" firstAttribute="leading" secondItem="hUS-xv-Dfw" secondAttribute="leading" constant="4" id="P2d-h7-uFf"/>
@@ -356,6 +356,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

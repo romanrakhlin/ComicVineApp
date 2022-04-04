@@ -17,12 +17,14 @@ enum APIData {
     case withSearch(apiKey: String, keyword: String, offset: Int, limit: Int)
 }
 
-// https://comicvine.gamespot.com/api/search/?api_key=61209f1700a5b27cea03e49cb4118b1dc1e17837&format=json&sort=name:asc&resources=character&query=%22Master%20of%20kung%20fu
 extension APIData: URLData {
+    
+    // API url with characters parametr
     var baseURL: URL {
         return URL(string: "https://comicvine.gamespot.com/api/characters")!
     }
 
+    // two variations of the path
     var path: String {
         switch self {
         case .withPage(let apiKey, let offset, let limit):

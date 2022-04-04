@@ -14,6 +14,10 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
+        styleUI()
+    }
+    
+    private func styleUI() {
         imageContainter.layer.cornerRadius = 12.0
         imageContainter.layer.shadowColor = UIColor.darkGray.cgColor
         imageContainter.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)

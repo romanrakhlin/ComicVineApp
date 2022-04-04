@@ -60,6 +60,7 @@ class CharactersCollectionViewController: UIViewController {
     // get first chunk of characters and set up collection view
     private func fetchCharacters() {
         let internetConnection = comicsViewModel.checkInternerConnection()
+        
         if internetConnection {
             showLoader()
             
@@ -80,6 +81,7 @@ class CharactersCollectionViewController: UIViewController {
     // pagination, preparing next page
     private func getNextPage() {
         let internetConnection = comicsViewModel.checkInternerConnection()
+        
         if internetConnection {
             currentOffset = characters.count
             showLoader()
@@ -101,6 +103,7 @@ class CharactersCollectionViewController: UIViewController {
     // for seatching the characters
     private func searchCharacters(with keywords: String) {
         let internetConnection = comicsViewModel.checkInternerConnection()
+        
         if internetConnection {
             currentOffset = characters.count
             showLoader()
